@@ -20,8 +20,14 @@ Table of Contents
 We introduce TagSeqTools as a flexible, general pipeline for facilitating the identification and exploration of tagged-RNA (i.e. NAD-capped RNA) using NAD tagSeq data. TagSeqTools can differentiate tagged and untagged reads and make quantitative analysis by only two steps. Besides of TagSeek and TagSeqQuant two major modules, the pipeline also includes other advanced modules for detecting isoforms, antisense transcripts, pre-mRNA (un-spliced transcripts), or others. In addition, this package can automatically generate plots and tables for visualization and further analysis for users. Therefore, TagSeqTools provides a convenient and comprehensive workflow for researchers to study data produced by NAD tagSeq or similar method using Nanopore sequencing.
 
 ## <a name="compilation"></a> Prerequisites & Pipeline
-R > 3.2.1 and python 2.7 are suggested. Some R packages, like "ggplot", "gplots", "corrplot" are also required, but they will be automatically installed if using our pipeline.
+R > 3.2.1 and python 2.7 are suggested. 
+
+Some R packages, like "ggplot", "gplots", "corrplot" are also required, but they will be automatically installed if using our pipeline.
+
+Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
+
 FastQC> v0.11.4, samtools> 1.7, minimap2>2.12 are required. 
+
 No further installation is needed. You only need to format the input files and directory acording to the requirement, and run two scripts on these files.
 
 ## <a name="usage"></a> Usage
@@ -109,11 +115,13 @@ __stat.csv:__ including total number of count, total number of gene, total numbe
 ## <a name="demo"></a> Demo
 
 Download the demo folder, and go into the demo folder and simply run 
-   
+    ### un-compress reference fasta files:
+    tar -zxvf TAIR10.genome.fa.tar.gz 
+    tar -zxvf TAIR10.trans.fa.tar.gz
     python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12
     python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa
 
-The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt" are the final results.
+The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt" and bam format files for visulization are the final results.
 
 
 
