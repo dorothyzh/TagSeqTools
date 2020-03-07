@@ -115,9 +115,10 @@ __stat.csv:__ including total number of count, total number of gene, total numbe
 ## <a name="demo"></a> Demo
 
 Download the demo folder, and go into the demo folder and simply run 
-    ### un-compress reference fasta files:
-    tar -zxvf TAIR10.genome.fa.tar.gz 
-    tar -zxvf TAIR10.trans.fa.tar.gz
+    
+    tar -zxvf TAIR10.genome.fa.tar.gz ### un-compress reference fasta files
+    tar -zxvf TAIR10.trans.fa.tar.gz ### un-compress reference fasta files
+    
     python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12
     python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa
 
