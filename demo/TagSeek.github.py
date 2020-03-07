@@ -11,7 +11,7 @@ parser.add_argument("-f",'--fastq_input_name' ,
 parser.add_argument("-t",'--tag_input_sequence' ,
                    help='Tag Sequence')
 parser.add_argument('-s','--similarity_tag_cutoff', type=int,
-                   help='an integer')
+                   help='an integer for similarity cut off')
 
 args = parser.parse_args()
 
