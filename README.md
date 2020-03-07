@@ -122,7 +122,7 @@ Download the demo folder, and go into the demo folder and simply run
     python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12
     python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa
 
-The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt" are generated and bam format files for visulization are the final results.
+The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt" and bam format files for visulization will be generated.
 
 
 
