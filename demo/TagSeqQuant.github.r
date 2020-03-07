@@ -1,3 +1,17 @@
+cat("Copyright [2018] [ZHONG Huan]\n")
+
+cat('Licensed under the Apache License, Version 2.0 (the "License");\n')
+cat("you may not use this file except in compliance with the License.\n")
+cat("You may obtain a copy of the License at\n")
+
+cat("    http://www.apache.org/licenses/LICENSE-2.0\n")
+
+cat("Unless required by applicable law or agreed to in writing, software\n")
+cat('distributed under the License is distributed on an "AS IS" BASIS,\n')
+cat("WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n")
+cat("See the License for the specific language governing permissions and\n")
+cat("limitations under the License.\n")
+cat("\n")
 
 ############################ R--~/nano/leave/2019NAD.at.short.r
 ######------NAD
