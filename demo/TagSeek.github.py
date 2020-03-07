@@ -5,6 +5,23 @@ from Bio import SeqIO
 import regex 
 import argparse
 
+
+print("Copyright [2018] [ZHONG Huan]")
+
+print('Licensed under the Apache License, Version 2.0 (the "License");')
+print("you may not use this file except in compliance with the License.")
+print("You may obtain a copy of the License at")
+
+print("    http://www.apache.org/licenses/LICENSE-2.0")
+
+print("Unless required by applicable law or agreed to in writing, software")
+print('distributed under the License is distributed on an "AS IS" BASIS,')
+print("WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.")
+print("See the License for the specific language governing permissions and")
+print("limitations under the License.")
+print("")
+
+
 parser = argparse.ArgumentParser(description='Check Input files and parameters')
 parser.add_argument("-f",'--fastq_input_name' , 
                    help='Input fastq file')
