@@ -84,17 +84,18 @@ def TagSeek(Input_fastq_name,Input_tag_sequence,Tag_similarity_cutoff):
    	
 		if allPatternCounts>0:
 			output_handle = open(str(Output_tag_fastq+'.fastq'), "a")
-			SeqIO.write(record, output_handle, "fastq-sanger")
+			SeqIO.write(record, output_handle, "fastq")
 #			output_handle.close()
 			sucseqs +=1		
 		else:
                 	output_handle = open(str(Output_nontag_fastq+'.fastq'), "a")
-                	SeqIO.write(record, output_handle, "fastq-sanger")
+                	SeqIO.write(record, output_handle, "fastq")
 
 	count_all(countPattern) 
  
 	print("Fastq file Reading from", Input_fastq_name)
 	print("Tag similarity cut off is "+str(Tag_similarity_cutoff))
 	print(countseqs, "records analysed.")
-
+	print(countseqs, "records analysed.")
+        print(sucseqs,"tagged reads found.")
 TagSeek(args.fastq_input_name,args.tag_input_sequence,args.similarity_tag_cutoff)
