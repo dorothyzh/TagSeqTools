@@ -133,5 +133,5 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 
 ## <a name="Updates"></a> Updates
 
-Only demo has been released.
+Only demo released.
 
