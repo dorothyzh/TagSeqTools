@@ -129,12 +129,10 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 
 ## <a name="demo Results"></a> Demo Results
 
-# Demo files
-
 |Step|Description|Software|command|input_files|output_files| demo files |
 |---|---|---|---| ---| ---|---|
 |1| Quality control | fastqc | fastqc demo.fastq |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo.fastq| [demo.tag_fastqc.zip](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo_fastqc.html)|
-|2| Differentiate tagged and non-tagged reads | TagSeek | python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12 |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo.tag.fastq, demo.nontag.fastq, tag.stat| [tag.stat] (https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/stat.csv)| 
+|2| Differentiate tagged and non-tagged reads | TagSeek | python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12 |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo.tag.fastq, demo.nontag.fastq, tag.stat.txt| [tag.stat.txt] (https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/tag.stat.txt)| 
 |3| Quantification of genes and isoforms | TagSeqQuant | python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa|[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | NAD_total_counts.txt, NAD_total_isoform_counts.txt, NAD_sort.bam, nonNAD_sort.bam | [NAD_total_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_counts.txt), [NAD_total_isoform_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_isoform_counts.txt)| 
 
 ## <a name="Reference"></a> Reference
