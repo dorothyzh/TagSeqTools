@@ -90,7 +90,16 @@ def TagSeek(Input_fastq_name,Input_tag_sequence,Tag_similarity_cutoff):
 		else:
                 	output_handle = open(str(Output_nontag_fastq+'.fastq'), "a")
                 	SeqIO.write(record, output_handle, "fastq")
-
+	tag_log = open('tag.stat.txt','w')
+        class LogPrint:
+                def __init__(logfile, tmmp):
+                        logfile.tmmp = tmmp
+                def write(logfile, final):
+                        logfile.tmmp.write(final)
+                        logfile.tmmp.flush()
+                        tag_log.write(final)
+        sys.stdout=LogPrint(sys.stdout)
+	
 	count_all(countPattern) 
  
 	print("Fastq file Reading from", Input_fastq_name)
