@@ -2,7 +2,6 @@ README for TagSeqTools
 ===============
 
 [Huan ZHONG](https://github.com/dorothyzh/) \(zhdorothy5@gmail.com\)
-Only demo has been released
 
 * * *
 
@@ -128,4 +127,6 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 
 
 ## <a name="Reference"></a> Reference
+
+Only demo has been released.
 
