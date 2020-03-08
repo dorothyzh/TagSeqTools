@@ -17,7 +17,7 @@ Table of Contents
 * * *
 
 ## <a name="introduction"></a> Introduction
-We introduce TagSeqTools as a flexible, general pipeline for facilitating the identification and exploration of tagged-RNA (i.e. NAD-capped RNA) using NAD tagSeq data. TagSeqTools can differentiate tagged and untagged reads and make quantitative analysis by only two steps. Besides of TagSeek and TagSeqQuant two major modules, the pipeline also includes other advanced modules for detecting isoforms, antisense transcripts, pre-mRNA (un-spliced transcripts), or others. In addition, this package can automatically generate plots and tables for visualization and further analysis for users. Therefore, TagSeqTools provides a convenient and comprehensive workflow for researchers to study data produced by NAD tagSeq or similar method using Nanopore sequencing.
+We introduce TagSeqTools as a flexible, general pipeline for facilitating the identification and exploration of tagged-RNA (i.e. NAD-capped RNA) using NAD tagSeq data. TagSeqTools can differentiate tagged and untagged reads and conduct quantitative analysis by only two steps. Besides of TagSeek and TagSeqQuant two major modules, the pipeline also includes other advanced modules for detecting isoforms, antisense transcripts, pre-mRNA (un-spliced transcripts), or others. In addition, this package can automatically generate plots and tables for visualization and further analysis for users. Therefore, TagSeqTools provides a convenient and comprehensive workflow for researchers to study data produced by NAD tagSeq or similar method using Nanopore sequencing.
 
 ## <a name="compilation"></a> Prerequisites & Pipeline
 R > 3.2.1 and python 2.7 are suggested. 
