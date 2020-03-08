@@ -14,6 +14,7 @@ Table of Contents
 * [Results](#Results)
 * [Demo](#demo)
 * [Reference](#Reference)
+* [Updates] (#Updates)
 
 * * *
 
@@ -127,6 +128,8 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 
 
 ## <a name="Reference"></a> Reference
+
+## <a name="Updates"></a> Updates
 
 Only demo has been released.
 
