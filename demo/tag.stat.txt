@@ -1,0 +1,11 @@
+The number of GAACCUGAACCU detected: 1088
+The number of UGAACCUGAACC detected: 1118
+The number of ACCUGAACCUGA detected: 1015
+The number of CCUGAACCUGAA detected: 981
+The number of AACCUGAACCUG detected: 986
+The number of CUGAACCUGAAC detected: 1094
+('Fastq file Reading from', 'demo.fastq')
+Tag similarity cut off is 12
+(20000, 'records analysed.')
+(20000, 'records analysed.')
+(1354, 'tagged reads found.')
