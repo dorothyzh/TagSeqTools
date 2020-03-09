@@ -28,7 +28,9 @@ Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argpar
 (##pip install os, sys, re, Bio, SeqIO, regex, argparse)
 
 FastQC> v0.11.4 (https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
+
 samtools> 1.7 (http://www.htslib.org/download/)
+
 minimap2>2.12 (https://github.com/lh3/minimap2)
 
 
