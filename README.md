@@ -25,7 +25,7 @@ We introduce TagSeqTools as a flexible, general pipeline for facilitating the id
 python 2.7 and R > 3.2.1 are suggested. 
 
 Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
-(##pip install os, sys, re, Bio, SeqIO, regex, argparse)
+(##pip install os, sys, re, Biopython, regex, argparse)
 
 FastQC> v0.11.4 (https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
 
