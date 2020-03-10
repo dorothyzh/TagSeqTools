@@ -22,13 +22,20 @@ Table of Contents
 We introduce TagSeqTools as a flexible, general pipeline for facilitating the identification and exploration of tagged-RNA (i.e. NAD-capped RNA) using NAD tagSeq data. TagSeqTools can differentiate tagged and untagged reads and conduct quantitative analysis by only two steps. Besides of TagSeek and TagSeqQuant two major modules, the pipeline also includes other advanced modules for detecting isoforms, antisense transcripts, pre-mRNA (un-spliced transcripts), or others. In addition, this package can automatically generate plots and tables for visualization and further analysis for users. Therefore, TagSeqTools provides a convenient and comprehensive workflow for researchers to study data produced by NAD tagSeq or similar method using Nanopore sequencing.
 
 ## <a name="compilation"></a> Prerequisites & Pipeline
-R > 3.2.1 and python 2.7 are suggested. 
+python 2.7 and R > 3.2.1 are suggested. 
+
+Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
+(##pip install os, sys, re, Biopython, regex, argparse)
+
+FastQC> v0.11.4 (https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
+
+samtools> 1.7 (http://www.htslib.org/download/)
+
+minimap2>2.12 (https://github.com/lh3/minimap2)
+
 
 Some R packages, like "ggplot", "gplots", "corrplot" are also required, but they will be automatically installed if using our pipeline.
 
-Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
-
-FastQC> v0.11.4, samtools> 1.7, minimap2>2.12 are required. 
 
 No further installation is needed. You only need to format the input files and directory acording to the requirement, and run two scripts on these files.
 
@@ -130,7 +137,7 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 
 |Step|Description|Software|command|input_files|output_files| demo files |
 |---|---|---|---| ---| ---|---|
-|1| Quality control | fastqc | fastqc demo.fastq |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo_fastqc.html, demo_fastqc.zip| [demo_fastqc.html](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo_fastqc.html)|
+|1| Quality control | fastqc | fastqc demo.fastq |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo_fastqc.html, demo_fastqc.zip| [demo_fastqc.html](http://htmlpreview.github.io/?https://github.com/dorothyzh/TagSeqTools2/blob/master/demo//demo_fastqc.html)|
 |2| Differentiate tagged and non-tagged reads | TagSeek | python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12 |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo.tag.fastq, demo.nontag.fastq, tag.stat.txt| [tag.stat.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/tag.stat.txt)| 
 |3| Quantification of genes and isoforms | TagSeqQuant | python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa|TAIR10.genome.fa, TAIR10.trans.fa| NAD_total_counts.txt, NAD_total_isoform_counts.txt, NAD_sort.bam, nonNAD_sort.bam | [NAD_total_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_counts.txt), [NAD_total_isoform_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_isoform_counts.txt)| 
 
