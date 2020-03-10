@@ -32,7 +32,9 @@ FastQC> v0.11.4 (https://www.bioinformatics.babraham.ac.uk/projects/download.htm
 samtools> 1.7 (http://www.htslib.org/download/)
 
 minimap2>2.12 (https://github.com/lh3/minimap2)
-
+    (curl -L https://github.com/lh3/minimap2/releases/download/v2.17/minimap2-2.17_x64-linux.tar.bz2 | tar -jxvf -)
+    Then add the minimamp2 to the system variant:
+    (export path=$path /home/user_name/minimap2/minimap2))
 
 Some R packages, like "ggplot", "gplots", "corrplot" are also required, but they will be automatically installed if using our pipeline.
 
