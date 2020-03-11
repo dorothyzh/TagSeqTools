@@ -16,7 +16,7 @@ cat("\n")
 ############################ R--~/nano/leave/2019NAD.at.short.r
 ######------NAD
 paf=read.delim("trans.NAD.paf",header=F)
-NADpaf.sub=as.character(subset(paf,V3>15)[,6])
+NADpaf.sub=as.character(paf[,6])
 NAD.count=as.data.frame(table(NADpaf.sub))
 
 ######------nonNAD
