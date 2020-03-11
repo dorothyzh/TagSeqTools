@@ -1,0 +1,8 @@
+Gene	NAD.count	total.count
+Chr1	255	2033
+Chr2	163	1186
+Chr3	127	1126
+Chr4	107	846
+Chr5	244	1383
+ChrM	3	17
+ChrC	NA	NA

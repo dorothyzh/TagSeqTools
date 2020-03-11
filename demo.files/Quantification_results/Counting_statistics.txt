@@ -1,0 +1,5 @@
+category,num
+total number of count,5699
+total number of gene,7
+total number of NAD count,899
+total number of NAD gene,6
