@@ -62,18 +62,18 @@ No further installation is needed. You only need to format the input files and d
 
 ### II. Run the TagSeek python script on the prepared input files.
       
-        python TagSeek.github.py -f INPUT_FILE_NAME -t TAG_SEQUENCE -s SIMILARITY_CUTOFF
+        python TagSeek.github.py --fastq INPUT_FILE_NAME --tag TAG_SEQUENCE --similarity SIMILARITY_CUTOFF
   
   *tag.fastq and *non.tag.fastq will be generated for tagged-RNA and nontagged-RNA reads. 
 
 ### III. Run the TagSeqQuant python script.
    
-        python TagSeqQuant.github.py INPUT_FILE_NAME TRANSCRIPTOME_REFERENCE GENOME_REFERENCE
+        python TagSeqQuant.github.py --name INPUT_FILE_NAME --trans TRANSCRIPTOME_REFERENCE --genome GENOME_REFERENCE
         
 ### IV. Computing Time
 
    For TagSeek.github.py, 4 seconds for 20,000 fastq reads. 
-   For TagSeqQuant.github.py, 1 minutes and 25 seconds for 20,000 fastq reads.         
+   For TagSeqQuant.github.py, 43 seconds for 20,000 fastq reads.         
 
 ## <a name="Results"></a> Results
     
@@ -86,15 +86,9 @@ __fastqc.html:__ FastQC results, including quality scores across all bases, GC c
    
 ### b) Visulazation results of genes and isoforms.
 
-__NAD.sort.bam:__ NAD-RNA genes visulazation file, can be opened by IGV along with NAD.sort.bam.bai.
+__NAD.sort.bam:__ NAD-RNA genes/isoforms visulazation file, can be opened by IGV along with NAD.sort.bam.bai.
 
-__nonNAD.sort.bam:__ non-NAD-RNA genes visulazation file, can be opened by IGV along with nonNAD.sort.bam.bai.
-
-__trans.NAD.bam:__ NAD-RNA isoforms visulazation file.
-
-__trans.nonNAD.bam:__ non-NAD-RNA isoforms visulazation file.
-
-
+__nonNAD.sort.bam:__ non-NAD-RNA genes/isoforms visulazation file, can be opened by IGV along with nonNAD.sort.bam.bai.
 
 
 ### c) Quantification results of genes and isoforms: "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt".
@@ -131,8 +125,9 @@ Download the demo folder, and go into the demo folder and simply run
     tar -zxvf TAIR10.genome.fa.tar.gz ### un-compress reference fasta files
     tar -zxvf TAIR10.trans.fa.tar.gz ### un-compress reference fasta files
     
-    python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12
-    python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa
+    python TagSeek.NPdemo.py --fastq demo --tag 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' --similarity 12
+    python TagSeqQuant.NPdemo.py --name demo --genome TAIR10.trans.fa --trans TAIR10.genome.fa
+
 
 The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt" and bam format files for visulization will be generated.
 
@@ -140,9 +135,9 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 
 |Step|Description|Software|command|input_files|output_files| demo files |
 |---|---|---|---| ---| ---|---|
-|1| Quality control | fastqc | fastqc demo.fastq |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo_fastqc.html, demo_fastqc.zip| [demo_fastqc.html](http://htmlpreview.github.io/?https://github.com/dorothyzh/TagSeqTools2/blob/master/demo//demo_fastqc.html)|
-|2| Differentiate tagged and non-tagged reads | TagSeek | python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12 |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo.tag.fastq, demo.nontag.fastq, tag.stat.txt| [tag.stat.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/tag.stat.txt)| 
-|3| Quantification of genes and isoforms | TagSeqQuant | python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa|TAIR10.genome.fa, TAIR10.trans.fa| NAD_total_counts.txt, NAD_total_isoform_counts.txt, NAD_sort.bam, nonNAD_sort.bam | [NAD_total_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_counts.txt), [NAD_total_isoform_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_isoform_counts.txt)| 
+|1| Quality control | fastqc | fastqc demo.fastq |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo_fastqc.html, demo_fastqc.zip| [demo_fastqc.html](http://htmlpreview.github.io/?https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/QC_results/demo_fastqc.html)|
+|2| Differentiate tagged and non-tagged reads | TagSeek | python TagSeek.NPdemo.py --fastq demo --tag 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' --similarity 12 |[demo.fastq]| demo.tag.fastq, demo.nontag.fastq, tag.stat.txt| [Tag_statistics.txt](https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/Mapping_results/Tag_statistics.txt)| 
+|3| Quantification of genes and isoforms | TagSeqQuant | python TagSeqQuant.NPdemo.py --name demo --trans TAIR10.trans.fa --genome TAIR10.genome.fa| Mapping_statistics.txt, Counting_statistics.txt, NAD_total_counts.txt, NAD_total_isoform_counts.txt, NAD_sort.bam, nonNAD_sort.bam |[Mapping_statistics.txt](https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/Mapping_statistics/NAD_map.html),[Counting_statistics.txt](https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/Quantification_results/Counting_statistics.txt), [NAD_total_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_counts.txt), [NAD_total_isoform_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_isoform_counts.txt)| 
 
 ## <a name="Reference"></a> Reference
 
