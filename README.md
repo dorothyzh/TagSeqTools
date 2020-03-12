@@ -145,5 +145,5 @@ Zhang, Hailei*, Huan Zhong*, Shoudong Zhang, Xiaojian Shao, Min Ni, Zongwei Cai,
 
 ## <a name="Updates"></a> Updates
 
-Only demo released.
+Only demo for Nature protocol released.
 
