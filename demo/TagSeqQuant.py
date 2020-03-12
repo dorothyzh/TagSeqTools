@@ -36,7 +36,7 @@ def TagSeqQuant(InputName,trans_ref,genome_ref):
 
 	print("Start Quantification..............................")
 
-	commands.getoutput("Rscript --vanilla TagSeqQuant.NPdemo.r")
+	commands.getoutput("Rscript --vanilla TagSeqQuant.r")
 
 	commands.getoutput("mkdir Quantification_results && mv *txt *paf Quantification_results")
 
