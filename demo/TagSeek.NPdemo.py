@@ -105,6 +105,5 @@ def TagSeek(Input_fastq_name,Input_tag_sequence,Tag_similarity_cutoff):
 	print("Fastq file Reading from", Input_fastq_name)
 	print("Tag similarity cut off is "+str(Tag_similarity_cutoff))
 	print(countseqs, "records analysed.")
-	print(countseqs, "records analysed.")
         print(sucseqs,"tagged reads found.")
 TagSeek(args.fastq,args.tag,args.similarity)
