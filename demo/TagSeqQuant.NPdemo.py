@@ -7,10 +7,10 @@ import argparse
 parser = argparse.ArgumentParser(description='Check Input files and parameters')
 parser.add_argument("-n",'--name' , 
                    help='Input fastq sample name (prefix of tag fastq and nontag fastq should be same)')
-parser.add_argument("-g",'--genome' ,
-                   help='genome reference')
 parser.add_argument('-tr','--trans', 
                    help='transcriptome refernce')
+parser.add_argument("-g",'--genome' ,
+                   help='genome reference')
 
 args = parser.parse_args()
 
