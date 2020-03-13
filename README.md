@@ -1,4 +1,4 @@
-README for TagSeqTools (Not full released)
+README for TagSeqTools (pre-released, the full version will be comming soon)
 ===============
 
 [Huan ZHONG](https://github.com/dorothyzh/) \(zhdorothy5@gmail.com\)
@@ -34,7 +34,7 @@ minimap2>2.12 (https://github.com/lh3/minimap2)
          
 Then add the minimamp2 to the system variant:
 
-         export path=$path $DIRECTORY/minimap2/minimap2)
+         export path=$path $DIRECTORY/minimap2/minimap2
          
 python 2.7 and R > 3.2.1 are suggested. 
 
@@ -64,18 +64,25 @@ No further installation is needed. You only need to format the input files and d
        
        mkdir analysis
        cd analysis
-       cat $DIR/fastq_fail/*.fastq $DIR/fastq_pass/*.fastq > all.fastq
+       cat $DIRECTORY/fastq_fail/*.fastq $DIRECTORY/fastq_pass/*.fastq > all.fastq
        
 
 ### II. Run the TagSeek python script on the prepared input files.
       
         python TagSeek.github.py --fastq INPUT_FILE_NAME --tag TAG_SEQUENCE --similarity SIMILARITY_CUTOFF
   
-  *tag.fastq and *non.tag.fastq will be generated for tagged-RNA and nontagged-RNA reads. 
+  *tag.fastq and *non.tag.fastq will be generated for tagged-RNA and nontagged-RNA reads.
+  
+   __--fastq:__ or __-f__ the prefix name of input fastq. Such as "all.fastq", then the INPUT_FILE_NAME should be "all".
 
+   __--tag:__ or __-t__ the syntheic tag RNA sequence.
+   
+   __--similarity:__ or __-s__ the number of exact consecutively matched bases between the tagRNA sequence and the first 40 bases of the reads. 
+   
 ### III. Run the TagSeqQuant python script.
    
         python TagSeqQuant.github.py --name INPUT_FILE_NAME --trans TRANSCRIPTOME_REFERENCE --genome GENOME_REFERENCE
+        
         
 ### IV. Computing Time
 
