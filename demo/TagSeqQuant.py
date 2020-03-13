@@ -21,6 +21,7 @@ def TagSeqQuant(InputName,trans_ref,genome_ref):
 
 	print("Start QC........................................")
 	commands.getoutput("mkdir QC_results")
+	commands.getoutput("mkdir *txt QC_results")
 	commands.getoutput("fastqc --outdir QC_results %s %s %s" %(all_fastq,tag_fastq,nontag_fastq))
 
 	print("Start Mapping....................................")
