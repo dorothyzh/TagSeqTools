@@ -71,7 +71,7 @@ No further installation is needed. You only need to format the input files and d
       
         python TagSeek.github.py --fastq INPUT_FILE_NAME --tag TAG_SEQUENCE --similarity SIMILARITY_CUTOFF
   
-  *tag.fastq and *non.tag.fastq will be generated for tagged-RNA and nontagged-RNA reads.
+  *tag.fastq and *nontag.fastq will be generated for tagged-RNA and nontagged-RNA reads.
   
    __--fastq:__ or __-f__ the prefix name of input fastq. Such as "all.fastq", then the INPUT_FILE_NAME should be "all".
 
@@ -82,6 +82,14 @@ No further installation is needed. You only need to format the input files and d
 ### III. Run the TagSeqQuant python script.
    
         python TagSeqQuant.github.py --name INPUT_FILE_NAME --trans TRANSCRIPTOME_REFERENCE --genome GENOME_REFERENCE
+        
+ __--name:__ or __-n__ the prefix name of input. The tagged fastq and non-tagged fastq should be prefixed with the same name of sample, such as "demo.tag.fastq" and "demo.nontag.fastq", the INPUT_FILE_NAME should be "demo".
+
+   __--trans:__ or __-tr__ the transcriptome reference fasta files including all full cdna sequences for each annotated gene. 
+   
+   __--genome:__ or __-g__ the genome reference fasta files. 
+        
+       
         
         
 ### IV. Computing Time
@@ -163,6 +171,8 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 ## <a name="Reference"></a> Reference
 
 Zhang, Hailei*, Huan Zhong*, Shoudong Zhang, Xiaojian Shao, Min Ni, Zongwei Cai, Xuemei Chen, and Yiji Xia. 2019. “NAD TagSeq Reveals That NAD + -Capped RNAs Are Mostly Produced from a Large Number of Protein-Coding Genes in Arabidopsis.” Proceedings of the National Academy of Sciences, May, 201903683. https://doi.org/10.1073/pnas.1903683116.
+
+Huan Zhong, Zongwei Cai, Zhu Yang, Yiji Xia. 2020. "TagSeqTools: a flexible and comprehensive analysis pipeline for NAD tagSeq data" bioRxiv 2020.03.09.982934; doi: https://doi.org/10.1101/2020.03.09.982934
 
 ## <a name="Updates"></a> Updates
 
