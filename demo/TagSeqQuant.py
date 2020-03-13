@@ -33,7 +33,8 @@ def TagSeqQuant(InputName,trans_ref,genome_ref):
 	commands.getoutput("samtools view -b -S genome.NAD.sam >NAD.bam && samtools sort -T NAD.sort -o NAD.sort.bam NAD.bam && samtools index NAD.sort.bam && rm genome.NAD.sam NAD.bam && samtools stats NAD.sort.bam >NAD_Mapping_statistics.txt")
 	commands.getoutput("samtools view -b -S genome.nonNAD.sam >nonNAD.bam && samtools sort -T nonNAD.sort -o nonNAD.sort.bam nonNAD.bam && samtools index nonNAD.sort.bam && rm genome.nonNAD.sam nonNAD.bam && samtools stats nonNAD.sort.bam>nonNAD_Mapping_statistics.txt")
 	commands.getoutput("plot-bamstats NAD_Mapping_statistics.txt -p Mapping_statistics/NAD_map && plot-bamstats nonNAD_Mapping_statistics.txt -p Mapping_statistics/nonNAD_map")
-	commands.getoutput("mkdir Mapping_results && mv *bam* *txt Mapping_results")
+	commands.getoutput("mv *txt Mapping_statistics")
+	commands.getoutput("mkdir Mapping_results && mv *bam* Mapping_results")
 
 	print("Start Quantification..............................")
 
