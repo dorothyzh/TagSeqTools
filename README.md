@@ -1,4 +1,4 @@
-README for TagSeqTools
+README for TagSeqTools (Not full released)
 ===============
 
 [Huan ZHONG](https://github.com/dorothyzh/) \(zhdorothy5@gmail.com\)
@@ -21,22 +21,29 @@ Table of Contents
 ## <a name="introduction"></a> Introduction
 We introduce TagSeqTools as a flexible, general pipeline for facilitating the identification and exploration of tagged-RNA (i.e. NAD-capped RNA) using NAD tagSeq data. TagSeqTools can differentiate tagged and untagged reads and conduct quantitative analysis by only two steps. Besides of TagSeek and TagSeqQuant two major modules, the pipeline also includes other advanced modules for detecting isoforms, antisense transcripts, pre-mRNA (un-spliced transcripts), or others. In addition, this package can automatically generate plots and tables for visualization and further analysis for users. Therefore, TagSeqTools provides a convenient and comprehensive workflow for researchers to study data produced by NAD tagSeq or similar method using Nanopore sequencing.
 
-## <a name="compilation"></a> Prerequisites & Pipeline
+## <a name="compilation"></a> Prerequisites & environment set up
 Ubuntu 18.04.3 LTS, Linux-based operating system (https://ubuntu.com/download)  
-
-python 2.7 and R > 3.2.1 are suggested. 
-
-Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
-(##pip install Biopython, regex)
 
 FastQC> v0.11.4 (https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
 
 samtools> 1.7 (http://www.htslib.org/download/)
 
 minimap2>2.12 (https://github.com/lh3/minimap2)
-    (curl -L https://github.com/lh3/minimap2/releases/download/v2.17/minimap2-2.17_x64-linux.tar.bz2 | tar -jxvf -)
-    Then add the minimamp2 to the system variant:
-    (export path=$path /home/user_name/minimap2/minimap2))
+
+         curl -L https://github.com/lh3/minimap2/releases/download/v2.17/minimap2-2.17_x64-linux.tar.bz2 | tar -jxvf -
+         
+Then add the minimamp2 to the system variant:
+
+         export path=$path $DIRECTORY/minimap2/minimap2)
+         
+python 2.7 and R > 3.2.1 are suggested. 
+
+Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
+(e.g. pip install Biopython regex). It is recommended to install the python modules in a clean environment, such as using "virtualenv" to build up a virtual environment to install the required modules and avoid direct collision of the softwares with the user’s system environment.
+         
+         virtualenv tag_env
+         source tag_env/bin/activate
+         pip install Biopython regex
 
 Some R packages, like "ggplot", "gplots", "corrplot" are also required, but they will be automatically installed if using our pipeline.
 
@@ -77,21 +84,32 @@ No further installation is needed. You only need to format the input files and d
 
 ## <a name="Results"></a> Results
     
-### a) Quality control.
+### a) Quality control. 
 
+The quality control results will be deposited in the "QC_results" directory.
+
+__Tag_statistics.txt:__ Tagging statistics, including the number of total reads, the number of tagged reads.
 
 __fastqc.html:__ FastQC results, including quality scores across all bases, GC content per base, sequence duplication levels and so on.
    
+### b) Mapping statistics.
+The mapping statistics will be deposited in the "Mapping_statistics" directory.
+
+__NAD_map.html:__ The mapping statistics of tagged-reads to the whole genome, including mapping ratio, duplication, bases mapping status, error-rate, indel information and so on. 
+__nonNAD_map.html:__ The mapping statistics of tagged-reads to the whole genome, including mapping ratio, duplication, bases mapping status, error-rate, indel information and so on. 
    
-   
-### b) Visulazation results of genes and isoforms.
+### c) Visulazation results of genes and isoforms. 
+The mapping results will be deposited in the "Mapping_results" directory. 
 
 __NAD.sort.bam:__ NAD-RNA genes/isoforms visulazation file, can be opened by IGV along with NAD.sort.bam.bai.
 
 __nonNAD.sort.bam:__ non-NAD-RNA genes/isoforms visulazation file, can be opened by IGV along with nonNAD.sort.bam.bai.
 
 
-### c) Quantification results of genes and isoforms: "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt".
+
+
+### d) Quantification results of genes and isoforms: "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt".
+The quantification results will be deposited in the "Quantification_results" directory.
         
         #NAD_total_counts.txt
         Gene    NAD.count       total.count
@@ -110,11 +128,7 @@ __NAD.count:__ The number of tagged reads mapped to the gene/isoform.
 
 __total.count:__ The number of total reads mapped to the gene/isoform.
 
-
-
-### d) Statistics of NAD-RNA and non-NAD-RNA quantification. 
-
-__stat.csv:__ including total number of count, total number of gene, total number of NAD count,total number of NAD gene
+__Counting_statistics.txt:__ including total number of count, total number of gene, total number of NAD count,total number of NAD gene
 
 
 
