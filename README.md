@@ -39,11 +39,11 @@ Then add the minimamp2 to the system variant:
 python 2.7 and R > 3.2.1 are suggested. 
 
 Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
-(e.g. pip install Biopython regex). It is recommended to install the python modules in a clean environment, such as using "virtualenv" to build up a virtual environment to install the required modules and avoid direct collision of the softwares with the user’s system environment.
+(e.g. pip install biopython regex). It is recommended to install the python modules in a clean environment, such as using "virtualenv" to build up a virtual environment to install the required modules and avoid direct collision of the softwares with the user’s system environment.
          
          virtualenv tag_env
          source tag_env/bin/activate
-         pip install Biopython regex
+         pip install biopython regex
 
 Some R packages, like "ggplot", "gplots", "corrplot" are also required, but they will be automatically installed if using our pipeline.
 
