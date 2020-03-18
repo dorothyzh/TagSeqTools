@@ -1,4 +1,4 @@
-README for TagSeqTools
+README for TagSeqTools (pre-released, the full version will be comming soon)
 ===============
 
 [Huan ZHONG](https://github.com/dorothyzh/) \(zhdorothy5@gmail.com\)
@@ -21,22 +21,29 @@ Table of Contents
 ## <a name="introduction"></a> Introduction
 We introduce TagSeqTools as a flexible, general pipeline for facilitating the identification and exploration of tagged-RNA (i.e. NAD-capped RNA) using NAD tagSeq data. TagSeqTools can differentiate tagged and untagged reads and conduct quantitative analysis by only two steps. Besides of TagSeek and TagSeqQuant two major modules, the pipeline also includes other advanced modules for detecting isoforms, antisense transcripts, pre-mRNA (un-spliced transcripts), or others. In addition, this package can automatically generate plots and tables for visualization and further analysis for users. Therefore, TagSeqTools provides a convenient and comprehensive workflow for researchers to study data produced by NAD tagSeq or similar method using Nanopore sequencing.
 
-## <a name="compilation"></a> Prerequisites & Pipeline
+## <a name="compilation"></a> Prerequisites & installation
 Ubuntu 18.04.3 LTS, Linux-based operating system (https://ubuntu.com/download)  
-
-python 2.7 and R > 3.2.1 are suggested. 
-
-Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
-(##pip install Biopython, regex)
 
 FastQC> v0.11.4 (https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
 
 samtools> 1.7 (http://www.htslib.org/download/)
 
 minimap2>2.12 (https://github.com/lh3/minimap2)
-    (curl -L https://github.com/lh3/minimap2/releases/download/v2.17/minimap2-2.17_x64-linux.tar.bz2 | tar -jxvf -)
-    Then add the minimamp2 to the system variant:
-    (export path=$path /home/user_name/minimap2/minimap2))
+
+         curl -L https://github.com/lh3/minimap2/releases/download/v2.17/minimap2-2.17_x64-linux.tar.bz2 | tar -jxvf -
+         
+Then add the minimamp2 to the system variant:
+
+         export path=$path $DIRECTORY/minimap2/minimap2
+         
+python 2.7 and R > 3.2.1 are suggested. 
+
+Modules required to be install in python: os, sys, re, Bio, SeqIO, regex, argparse.
+(e.g. pip install biopython regex). It is recommended to install the python modules in a clean environment, such as using "virtualenv" to build up a virtual environment to install the required modules and avoid direct collision of the softwares with the user’s system environment.
+         
+         virtualenv tag_env
+         source tag_env/bin/activate
+         pip install biopython regex
 
 Some R packages, like "ggplot", "gplots", "corrplot" are also required, but they will be automatically installed if using our pipeline.
 
@@ -57,47 +64,67 @@ No further installation is needed. You only need to format the input files and d
        
        mkdir analysis
        cd analysis
-       cat $DIR/fastq_fail/*.fastq $DIR/fastq_pass/*.fastq > all.fastq
+       cat $DIRECTORY/fastq_fail/*.fastq $DIRECTORY/fastq_pass/*.fastq > all.fastq
        
 
 ### II. Run the TagSeek python script on the prepared input files.
       
-        python TagSeek.github.py -f INPUT_FILE_NAME -t TAG_SEQUENCE -s SIMILARITY_CUTOFF
+        python TagSeek.py --fastq INPUT_FILE_NAME --tag TAG_SEQUENCE --similarity SIMILARITY_CUTOFF
   
-  *tag.fastq and *non.tag.fastq will be generated for tagged-RNA and nontagged-RNA reads. 
+  *tag.fastq and *nontag.fastq will be generated for tagged-RNA and nontagged-RNA reads.
+  
+   __--fastq:__ or __-f__ the prefix name of input fastq. Such as "all.fastq", then the INPUT_FILE_NAME should be "all".
 
+   __--tag:__ or __-t__ the syntheic tag RNA sequence.
+   
+   __--similarity:__ or __-s__ the number of exact consecutively matched bases between the tagRNA sequence and the first 40 bases of the reads. 
+   
 ### III. Run the TagSeqQuant python script.
    
-        python TagSeqQuant.github.py INPUT_FILE_NAME TRANSCRIPTOME_REFERENCE GENOME_REFERENCE
+        python TagSeqQuant.py --name INPUT_FILE_NAME --trans TRANSCRIPTOME_REFERENCE --genome GENOME_REFERENCE
+        
+ __--name:__ or __-n__ the prefix name of input. The tagged fastq and non-tagged fastq should be prefixed with the same name of sample, such as "demo.tag.fastq" and "demo.nontag.fastq", the INPUT_FILE_NAME should be "demo".
+
+   __--trans:__ or __-tr__ the transcriptome reference fasta files including all full cdna sequences for each annotated gene. 
+   
+   __--genome:__ or __-g__ the genome reference fasta files. 
+        
+       
+        
         
 ### IV. Computing Time
 
    For TagSeek.github.py, 4 seconds for 20,000 fastq reads. 
-   For TagSeqQuant.github.py, 1 minutes and 25 seconds for 20,000 fastq reads.         
+   For TagSeqQuant.github.py, 43 seconds for 20,000 fastq reads.         
 
 ## <a name="Results"></a> Results
     
-### a) Quality control.
+### a) Quality control. 
 
+The quality control results will be deposited in the "QC_results" directory.
+
+__Tag_statistics.txt:__ Tagging statistics, including the number of total reads, the number of tagged reads.
 
 __fastqc.html:__ FastQC results, including quality scores across all bases, GC content per base, sequence duplication levels and so on.
    
+### b) Mapping statistics.
+The mapping statistics will be deposited in the "Mapping_statistics" directory.
+
+__NAD_map.html:__ The mapping statistics of tagged-reads to the whole genome, including mapping ratio, duplication, bases mapping status, error-rate, indel information and so on. 
+__nonNAD_map.html:__ The mapping statistics of tagged-reads to the whole genome, including mapping ratio, duplication, bases mapping status, error-rate, indel information and so on. 
    
-   
-### b) Visulazation results of genes and isoforms.
+### c) Visulazation results of genes and isoforms. 
+The mapping results will be deposited in the "Mapping_results" directory. 
 
-__NAD.sort.bam:__ NAD-RNA genes visulazation file, can be opened by IGV along with NAD.sort.bam.bai.
+__NAD.sort.bam:__ NAD-RNA genes/isoforms visulazation file, can be opened by IGV along with NAD.sort.bam.bai.
 
-__nonNAD.sort.bam:__ non-NAD-RNA genes visulazation file, can be opened by IGV along with nonNAD.sort.bam.bai.
-
-__trans.NAD.bam:__ NAD-RNA isoforms visulazation file.
-
-__trans.nonNAD.bam:__ non-NAD-RNA isoforms visulazation file.
+__nonNAD.sort.bam:__ non-NAD-RNA genes/isoforms visulazation file, can be opened by IGV along with nonNAD.sort.bam.bai.
 
 
 
 
-### c) Quantification results of genes and isoforms: "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt".
+### d) Quantification results of genes and isoforms: "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt".
+The quantification results will be deposited in the "Quantification_results" directory.
         
         #NAD_total_counts.txt
         Gene    NAD.count       total.count
@@ -116,11 +143,7 @@ __NAD.count:__ The number of tagged reads mapped to the gene/isoform.
 
 __total.count:__ The number of total reads mapped to the gene/isoform.
 
-
-
-### d) Statistics of NAD-RNA and non-NAD-RNA quantification. 
-
-__stat.csv:__ including total number of count, total number of gene, total number of NAD count,total number of NAD gene
+__Counting_statistics.txt:__ including total number of count, total number of gene, total number of NAD count,total number of NAD gene
 
 
 
@@ -131,8 +154,9 @@ Download the demo folder, and go into the demo folder and simply run
     tar -zxvf TAIR10.genome.fa.tar.gz ### un-compress reference fasta files
     tar -zxvf TAIR10.trans.fa.tar.gz ### un-compress reference fasta files
     
-    python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12
-    python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa
+    python TagSeek.py --fastq demo --tag 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' --similarity 12
+    python TagSeqQuant.py --name demo --genome TAIR10.trans.fa --trans TAIR10.genome.fa
+
 
 The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.txt" and bam format files for visulization will be generated.
 
@@ -140,15 +164,17 @@ The human-friendly tables "NAD_total_counts.txt" and "NAD_total_isoform_counts.t
 
 |Step|Description|Software|command|input_files|output_files| demo files |
 |---|---|---|---| ---| ---|---|
-|1| Quality control | fastqc | fastqc demo.fastq |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo_fastqc.html, demo_fastqc.zip| [demo_fastqc.html](http://htmlpreview.github.io/?https://github.com/dorothyzh/TagSeqTools2/blob/master/demo//demo_fastqc.html)|
-|2| Differentiate tagged and non-tagged reads | TagSeek | python TagSeek.github.py -f demo -t 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' -s 12 |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo.tag.fastq, demo.nontag.fastq, tag.stat.txt| [tag.stat.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/tag.stat.txt)| 
-|3| Quantification of genes and isoforms | TagSeqQuant | python TagSeqQuant.github.py demo TAIR10.trans.fa TAIR10.genome.fa|TAIR10.genome.fa, TAIR10.trans.fa| NAD_total_counts.txt, NAD_total_isoform_counts.txt, NAD_sort.bam, nonNAD_sort.bam | [Mapping_statistics](http://htmlpreview.github.io/?https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/ttt/Mapping_statistics/NAD.html),[NAD_total_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_counts.txt), [NAD_total_isoform_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_isoform_counts.txt)| 
+|1| Quality control | fastqc | fastqc demo.fastq |[demo.fastq](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/demo.fastq) | demo_fastqc.html, demo_fastqc.zip| [demo_fastqc.html](http://htmlpreview.github.io/?https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/QC_results/demo_fastqc.html)|
+|2| Differentiate tagged and non-tagged reads | TagSeek | python TagSeek.py --fastq demo --tag 'CCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAACCUGAA' --similarity 12 |demo.fastq| demo.tag.fastq, demo.nontag.fastq, Tag_statistics.txt| [Tag_statistics.txt](https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/Mapping_results/Tag_statistics.txt)| 
+|3| Quantification of genes and isoforms | TagSeqQuant | python TagSeqQuant.py --name demo --trans TAIR10.trans.fa --genome TAIR10.genome.fa|Input sample name, reference files (transcriptome and genome files)| NAD_map.html, nonNAD_map.html, Counting_statistics.txt, NAD_total_counts.txt, NAD_total_isoform_counts.txt, NAD_sort.bam, nonNAD_sort.bam |[NAD_map.html](http://htmlpreview.github.io/?https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/Mapping_statistics/NAD_map.html), [Counting_statistics.txt](https://github.com/dorothyzh/TagSeqTools/blob/master/demo.files/Quantification_results/Counting_statistics.txt), [NAD_total_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_counts.txt), [NAD_total_isoform_counts.txt](https://github.com/dorothyzh/TagSeqTools2/blob/master/demo/NAD_total_isoform_counts.txt)| 
 
 ## <a name="Reference"></a> Reference
 
 Zhang, Hailei*, Huan Zhong*, Shoudong Zhang, Xiaojian Shao, Min Ni, Zongwei Cai, Xuemei Chen, and Yiji Xia. 2019. “NAD TagSeq Reveals That NAD + -Capped RNAs Are Mostly Produced from a Large Number of Protein-Coding Genes in Arabidopsis.” Proceedings of the National Academy of Sciences, May, 201903683. https://doi.org/10.1073/pnas.1903683116.
 
+Huan Zhong, Zongwei Cai, Zhu Yang, Yiji Xia. 2020. "TagSeqTools: a flexible and comprehensive analysis pipeline for NAD tagSeq data" bioRxiv 2020.03.09.982934; doi: https://doi.org/10.1101/2020.03.09.982934
+
 ## <a name="Updates"></a> Updates
 
-Only demo released.
+Only demo for Nature protocol released.
 
